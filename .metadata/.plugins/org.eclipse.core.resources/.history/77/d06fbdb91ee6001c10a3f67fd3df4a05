@@ -1,0 +1,23 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<% 
+    Map<String, String> b = new HashMap<String,String>();
+    b.put("success","성공");
+    b.put("fail","실패");
+    pageContext.setAttribute("result", b);
+%>
+    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+성공/실패? ${boardList[0].title }<br>
+결과 : <%=b.get("no") %><br>
+</body>
+</html>

@@ -1,0 +1,10 @@
+package kr.ac.kopo.board.vo;
+
+/**
+ * t_board 테이블의 레코드의 정보를 기억하는 객체임(정보 저장 클래스)
+ * @author kopo
+ *
+ */
+public class BoardVO {
+
+}

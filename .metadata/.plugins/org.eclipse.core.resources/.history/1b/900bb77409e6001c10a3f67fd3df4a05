@@ -1,0 +1,41 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<%
+/*등록하기 위해서는 jsp로 써줘야함
+객체 등록 문법: 공유영역.setAttribute("이름", "값");
+객체 조회 : 공유영역.getAttribute("이름")
+jsp가 인식하는 4가지 공유영역: pageContext,request,session,application
+
+*/
+pageContext.setAttribute("msg", "pageContext영역에 등록 완료");
+
+//id라는 이름으로 홍길동 객체를 pageContext에 등록
+pageContext.setAttribute("id", "홍길동");
+request.setAttribute("msg","request영역에 등록완료");
+pageContext.setAttribute("length","request영역에 등록완료".length);
+%>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+
+<%-- 
+El 공유영역 4가지 :pageScope, requestScope, sessionScope,applicationScope --%>
+
+empty msg : ${empty msg }<BR>
+msg : <%=pageContext.getAttribute("msg") %><BR> 
+el msg : ${msg} <BR>
+el id : ${ id }<BR>
+request msg : ${requestScope.msg }<BR>
+request msg length :<%= ((String)request.getAttribute("msg")).length() %> 
+
+</body>
+</html>

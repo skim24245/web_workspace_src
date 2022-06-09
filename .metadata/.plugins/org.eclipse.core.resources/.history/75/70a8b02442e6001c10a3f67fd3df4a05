@@ -1,0 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+//http://localhost:9999/Mission-Web/jsp/board/detail.jsp?no=23 이렇게 날라옴.데이터베이스 키보드에 가서 해당하는 게시글을 가져와서 화면에 뿌려주면 됌.
+%>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div align ="center">
+<hr>
+<h2>게시판 상세</h2>
+<hr>
+
+
+<button id="updateBtn">수정</button>	
+<button id="deleteBtn">삭제</button>	
+<button id="backBtn">취소</button>	
+
+
+</div>
+</body>
+</html>

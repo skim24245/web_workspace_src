@@ -1,0 +1,61 @@
+<%@page import="kr.ac.kopo.board.vo.BoardVO"%>
+<%@page import="kr.ac.kopo.board.dao.BoardDAO"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="kr.ac.kopo.util.ConnectionFactory"%>
+<%@page import="java.sql.Connection"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<%
+//http://localhost:9999/Mission-Web/jsp/board/detail.jsp?no=23 이렇게 날라옴.데이터베이스 키보드에 가서 해당하는 게시글을 가져와서 화면에 뿌려주면 됌.
+/*
+작업순서
+1. no 파라미터 추출
+2. 추출된 no(number)를 t_board에서 추출한다음 해당 게시물 조회
+3. 조회된 게시물을 화면에 출력
+
+1~2번 단계만 java 코드로 만들어주고 3번만 html
+*/
+
+//get방식이기때문에 set encoding 할 필요 없음.
+int no = Integer.parseInt(request.getParameter("no"));
+BoardDAO dao = new BoardDAO();
+BoardVO board= dao.selectByno(no);//여기서는 no로 보냈지만 boardvo로 묶어서 보내도 됌
+
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="/Mission-Web/resource/js/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('#listBtn').click(function(){
+		location.href = 'list.jsp'
+	})
+})
+</script>
+</head>
+
+
+
+<body>
+	<div align="center">
+		<hr>
+		<h1>게시글 상세</h1>
+		<hr>
+
+
+
+
+<button id="updateBtn">수정</button>	
+<button id="deleteBtn">삭제</button>	
+<button id="listBtn">목록</button>	
+
+
+</div>
+</body>
+</html>

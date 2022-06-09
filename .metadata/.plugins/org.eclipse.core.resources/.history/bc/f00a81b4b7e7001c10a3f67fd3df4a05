@@ -1,0 +1,91 @@
+package kr.ac.kopo.member.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import kr.ac.kopo.board.vo.BoardVO;
+import kr.ac.kopo.member.vo.MemberVO;
+import kr.ac.kopo.util.ConnectionFactory;
+import kr.ac.kopo.util.JDBCClose;
+
+public class MemberDAO {
+
+
+	
+	//멤버 게시글 조회 
+	public List<MemberVO> selectAll(){
+	
+		List<MemberVO> list = new ArrayList<MemberVO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		
+	try {	
+		conn = new ConnectionFactory().getConnection();
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT ID, NAME , PASSWORD, EMAIL_ID, TEL1,TEL2,TEL3,POST,BASIC_ADDR,DETAIL_ADDR, TYPE, TO_CHAR(reg_date, 'yyyy-mm-dd')as reg_date ");
+		sql.append(" from T_MEMBER ");
+		sql.append(" order by ID desc");
+		pstmt = conn.prepareStatement(sql.toString());
+		ResultSet rs = pstmt.executeQuery();
+	
+		
+		while(rs.next()){
+			String ID = rs.getString("ID");
+			String NAME = rs.getString("NAME");
+			String PASSWORD =rs.getString("PASSWORD");
+			String EMAIL_ID =rs.getString("EMAIL_ID");
+			String TEL1 = rs.getString("TEL1");
+			String TEL2 =rs.getString("TEL2");
+			String TEL3 =rs.getString("TEL3");
+			String POST =rs.getString("POST");
+			String BASIC_ADDR =rs.getString("BASIC_ADDR");
+			String DETAIL_ADDR=rs.getString("DETAIL_ADDR");
+			String TYPE=rs.getString("TYPE");	
+			String regDate = rs.getString("reg_date");		
+	
+			
+			MemberVO member = new MemberVO();
+			member.setId(ID);
+			member.setName(NAME);
+			member.setPassword(PASSWORD);
+			member.setEmail_id(EMAIL_ID);
+			member.setTel1(TEL1);
+			member.setTel2(TEL2);
+			member.setTel3(TEL3);
+			member.setPost(POST);
+			member.setBasic_addr(BASIC_ADDR);
+			member.setDetail_addr(DETAIL_ADDR);
+			member.setType(TYPE);
+			member.setReg_date(regDate); //
+			
+						
+	list.add(member);
+	}
+	}catch(Exception e) {
+		e.printStackTrace();
+	}finally {
+		JDBCClose.close(pstmt, conn);
+	}
+	return list;
+	}
+	
+	
+	
+	
+	
+	}
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
